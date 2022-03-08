@@ -1,0 +1,2 @@
+class TeamCustomer < ApplicationRecord
+end
