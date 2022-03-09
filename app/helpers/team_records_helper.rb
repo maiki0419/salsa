@@ -1,0 +1,2 @@
+module TeamRecordsHelper
+end
