@@ -15,9 +15,12 @@ class Customer < ApplicationRecord
   has_many :customer_rooms
   has_many :chats
   has_many :team_customers
-  has_many :favorites
   has_many :posts
   has_many :post_comments
+  has_many :favorites
+  
+  # お気に入り登録した投稿を取得
+  has_many :favorite_posts, through: :favorites, source: :post
 
   # フォロー機能アソシエーション
   has_many :relationships, foreign_key: :followed_id
