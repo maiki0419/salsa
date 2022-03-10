@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
-            <li><%= link_to "マイページ", customer_path(current_cusmoter.id), class: 'btn btn-outline-light ml-2' %></li>
+            <li><%= link_to "マイページ", customer_path(current_customer.id), class: 'btn btn-outline-light ml-2' %></li>
             <li><%= link_to "チーム一覧", teams_path, class: 'btn btn-outline-light ml-2' %></li>
             <li><%= link_to "募集一覧", posts_path, class: 'btn btn-outline-light ml-2' %></li>
-            <li><%= link_to "ログアウト", teams_path, class: 'btn btn-outline-light ml-2' %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-light ml-2' %></li>
           <% else %>
             <li><%= link_to "about", about_path, class: 'btn btn-outline-light ml-2' %></li>
             <li><%= link_to "チーム一覧", teams_path, class: 'btn btn-outline-light ml-2' %></li>
