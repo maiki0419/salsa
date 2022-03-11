@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @customer_teams = @customer.team_customers
+    @team_customers = @customer.team_customers
     @posts = @customer.favorite_posts
   end
 

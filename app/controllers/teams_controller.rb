@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
+      current_customer.team_customers.create(team_id: @team.id)
       flash[:notice] = "チームの登録が完了しました。"
       redirect_to team_path(@team.id)
     else
@@ -21,15 +22,23 @@ class TeamsController < ApplicationController
 
 
   def show
-
+    @team = Team.find(params[:id])
+    @posts = Post.where(team_id: @team_id)
   end
 
   def edit
-
+    @team = Team.find(params[:id])
   end
 
   def update
-
+    @team = Team.find(params[:id])
+    if @team.update(team_params)
+      flash[:notice] = "更新に成功しました。"
+      redirect_to team_path(@team.id)
+    else
+      flash[:alert] = "更新に失敗しました。"
+      render :edit
+    end
   end
 
   def destroy

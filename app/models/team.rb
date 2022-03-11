@@ -17,6 +17,16 @@ class Team < ApplicationRecord
   has_many :team_records
   has_many :team_customers
 
+  def get_team_image(size)
+    unless team_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      team_image.attach(io: File.open(file_path),filename: "default.jpg", content_type: 'image/jpeg')
+    end
+    team_image.variant(resize: size).processed
+  end
 
+  def owner_name(owner_id)
+    Customer.find(owner_id).nickname
+  end
 
 end

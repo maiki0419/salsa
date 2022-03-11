@@ -7,18 +7,28 @@
 
   <h2 class="text-center mt-5">チーム一覧</h2>
 
-  <div class="row mt-5">
+  <div class="col-8 mx-auto">
     <% @teams.each do |team| %>
-      <div class="card">
-        <h5 class="card-header"><%= team.name %></h5>
-        <div class="card-body text-left">
-          <p class="card-text">
-            代表者　　：<%= Customer.find(team.owner_id).nickname %><br>
-            エリア　　：<%= team.prefecture_id %><<%= team.city %><br>
-            メンバー数：<%= team.member_count %><br>
-          </p>
+      <%= link_to team_path(team.id) do %>
+        <div class="card mt-3">
+          <h5 class="card-header"><%= team.name %></h5>
+          <div class="card-body text-left">
+            <p class="card-text">
+              <div class="d-flex">
+                <div class="mr-5">
+                  代表者　　：<%= Customer.find(team.owner_id).nickname %><br>
+                  エリア　　：<%= team.prefecture_id %><<%= team.city %><br>
+                  メンバー数：<%= team.member_count %>
+                </div>
+
+                <div>
+                  <%= image_tag team.get_team_image("100x100"), class:"ml-5" %>
+                </div>
+              </div>
+            </p>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
