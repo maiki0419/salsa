@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @posts = Post.where(team_id: @team_id)
+    @posts = Post.where(team_id: @team.id)
   end
 
   def edit
