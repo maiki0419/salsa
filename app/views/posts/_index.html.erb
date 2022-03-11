@@ -1,13 +1,16 @@
 <% posts.each do |post| %>
-  <div class="card">
-    <h5 class="card-header"><%= post.title %></h5>
-    <div class="card-body text-left">
-      <p class="card-text">
-        代表者　　：<%= post.customer.nickname %><br>
-        エリア　　：<%= post.prefecture_id %><<%= post.city %><br>
-        募集期限　：<%= post.deadline %><br>
-        カテゴリー：<%= post.post_categroy %>
-      </p>
+  <%= link_to post_path(post.id) do %>
+    <div class="card">
+      <h5 class="card-header"><%= post.title %></h5>
+      <div class="card-body text-left">
+        <p class="card-text">
+          代表者　　：<%= post.customer.nickname %><br>
+          エリア　　：<%= post.prefecture_id %><<%= post.city %><br>
+          募集期限　：<%= post.deadline %><br>
+          カテゴリー：<%= post.post_categroy %>
+        </p>
+      </div>
     </div>
-  </div>
+  <% end %>
+
 <% end %>
