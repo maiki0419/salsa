@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="teams-img text-center pt-3">
+      <%= link_to "チームを登録", new_team_path, class:"btn btn-lg btn-primary mt-5" %>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-5">チーム一覧</h2>
+
+  <div class="row mt-5">
+    <% @teams.each do |team| %>
+      <div class="card">
+        <h5 class="card-header"><%= team.name %></h5>
+        <div class="card-body text-left">
+          <p class="card-text">
+            代表者　　：<%= Customer.find(team.owner_id).nickname %><br>
+            エリア　　：<%= team.prefecture_id %><<%= team.city %><br>
+            メンバー数：<%= team.member_count %><br>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
