@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="d-flex">
+       <div>
+          <%= image_tag @team.get_team_image("150x150") %>
+        </div>
+        <div class="ml-5 mt-2">
+          <%= link_to "予定表・成績", root_path, class:"btn btn-sm btn-primary mt-5" %><br>
+          <% if @team.owner_id != current_customer.id %>
+            <%= link_to "オーナーチャット", root_path, class:"btn btn-sm btn-primary mt-2" %>
+          <% end %>
+        </div>
+      </div>
+
+      <p class="text-center mt-3"><%= @team.name %>の詳細
+      <% if @team.owner_id == current_customer.id %>
+        <%= link_to "編集", edit_team_path(@team.id), class:"btn btn-sm btn-success ml-3" %></p>
+      <% end %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>代表者</th>
+            <td colspan="2"><%= link_to @team.owner_name(@team.owner_id), customer_path(@team.owner_id) %></td>
+          </tr>
+          <tr>
+            <th>活動エリア</th>
+            <td colspan="2"><%= @team.prefecture_id %><<%= @team.city %></td>
+          </tr>
+          <tr>
+            <th>メンバー数</th>
+            <td colspan="2"><%= @team.member_count %></td>
+          </tr>
+           <tr>
+            <th>年代</th>
+            <td colspan="2"><%= @team.age %></td>
+          </tr>
+          <tr>
+            <th>レベル</th>
+            <td colspan="2"><%= @team.level %></td>
+          </tr>
+          <tr>
+            <th>活動日時</th>
+            <td colspan="2"><%= @team.activities_time %></td>
+          </tr>
+          <tr>
+            <th>チーム紹介</th>
+            <td colspan="2"><%= simple_format(@team.introduction) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-7 mt-5">
+      <div class="text-center">
+        <%= link_to "　　投稿　　", new_post_path, class:"btn btn-lg btn-primary" %>
+      </div>
+      <div class="text-center mt-5">
+        <h2>チームの投稿</h2>
+        <%= render "posts/index", posts: @posts %>
+      </div>
+    </div>
+  </div>
+</div>

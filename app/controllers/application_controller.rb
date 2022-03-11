@@ -3,13 +3,18 @@ class ApplicationController < ActionController::Base
 
 
  def after_sign_in_path_for(resource)
-  root_path
+  flash[:notice] = "ログインに成功しました。"
+  customer_path(current_customer.id)
+ end
+
+ def after_sign_up_path_for(resource)
   flash[:notice] = "新規登録に成功しました。"
+  customer_path(current_customer.id)
  end
 
  def after_sign_out_path_for(resource)
-  customer_path(current_user.id)
-  flash[:notice] = "ログインに成功しました。"
+  flash[:notice] = "ログアウトに成功しました。"
+  about_path
  end
 
  protected

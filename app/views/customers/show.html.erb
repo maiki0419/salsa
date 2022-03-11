@@ -37,33 +37,20 @@
       </table>
     </div>
     <div class="col-md-7  mx-auto">
-      <% if @customer_teams.present? %>
+      <% if @team_customers.present? %>
        <div class="text-center">
           <h3>マイチーム</h3>
           <ul class="list-group">
-            <% @customer_teams.each do |team_id| %>
-              <% @team = Teams.find(team_id) %>
-              <li class="list-group-item"><%= link_to @team.name, team_path(@team.id) %></li>
+            <% @team_customers.each do |team_customer| %>
+              <li class="list-group-item"><%= link_to team_customer.team_name(team_customer.team_id), team_path(team_customer.team_id) %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
 
-      <div class="text-center">
-        <h3>お気に入り投稿</h3>
-        <% @posts.each do |post| %>
-          <div class="card">
-            <h5 class="card-header"><%= post.title %></h5>
-            <div class="card-body text-left">
-              <p class="card-text">
-                代表者　　：<%= post.customer.nickname %><br>
-                エリア　　：<%= post.prefecture_id %><<%= post.city %><br>
-                募集期限　：<%= post.deadline %><br>
-                カテゴリー：<%= post.post_categroy %>
-              </p>
-            </div>
-          </div>
-        <% end %>
+      <div class="text-center mt-5">
+        <h2>お気に入り投稿</h2>
+        <%= render "posts/index", posts: @posts %>
       </div>
     </div>
   </div>

@@ -7,4 +7,11 @@ class TeamCustomer < ApplicationRecord
   belongs_to :customer
   belongs_to :team
 
+  def team_name(team_id)
+    Team.find(team_id).name
+  end
 end
+
+
+
+@user_events = @user.events

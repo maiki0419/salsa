@@ -18,7 +18,7 @@ class Customer < ApplicationRecord
   has_many :posts
   has_many :post_comments
   has_many :favorites
-  
+
   # お気に入り登録した投稿を取得
   has_many :favorite_posts, through: :favorites, source: :post
 
@@ -42,5 +42,7 @@ class Customer < ApplicationRecord
     end
     profile_image.variant(resize: size).processed
   end
+
+ 
 
 end
