@@ -16,4 +16,9 @@ class Post < ApplicationRecord
   has_many :favorites
 
 
+  def team_name(team_id)
+    Team.find(team_id).name
+  end
+
+
 end

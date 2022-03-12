@@ -14,4 +14,3 @@ end
 
 
 
-@user_events = @user.events
