@@ -39,3 +39,8 @@ table{
   background-size: cover;
   background-position: center;
 }
+
+/*お気に入りicon*/
+.fa-star{
+  font-size:30px;
+}

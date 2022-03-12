@@ -13,9 +13,9 @@ class Team < ApplicationRecord
   validates :founded, length: {maximum: 10}
   has_one_attached :team_image
 
-  has_many :schedules
-  has_many :team_records
-  has_many :team_customers
+  has_many :schedules, dependent: :destroy
+  has_many :team_records, dependent: :destroy
+  has_many :team_customers, dependent: :destroy
 
   def get_team_image(size)
     unless team_image.attached?

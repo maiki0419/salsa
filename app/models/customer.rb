@@ -12,12 +12,12 @@ class Customer < ApplicationRecord
   validates :age, length: {maximum: 10}
   validates :introduction, length: {maximum: 1000}
 
-  has_many :customer_rooms
-  has_many :chats
-  has_many :team_customers
-  has_many :posts
-  has_many :post_comments
-  has_many :favorites
+  has_many :customer_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :team_customers, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # お気に入り登録した投稿を取得
   has_many :favorite_posts, through: :favorites, source: :post
@@ -43,6 +43,6 @@ class Customer < ApplicationRecord
     profile_image.variant(resize: size).processed
   end
 
- 
+
 
 end
