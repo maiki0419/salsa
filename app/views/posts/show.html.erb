@@ -1,9 +1,13 @@
 <div class="container">
   <h2 class="text-center"><%= @post.title %></h2>
   <div class="text-right">
-    <%= link_to "⭐️", root_path, class:"mr-3" %>
+
+    <div id="post_<%= @post.id %>", class="mb-3">
+      <%= render "favorites/favorite", post: @post %>
+    </div>
+
     <% if @post.customer == current_customer %>
-      <%= link_to "編集", edit_post_path(@post.id), class:"btn btn-success" %>
+      <%= link_to "編集", edit_post_path(@post.id), class:"btn btn-success ml-3" %>
       <%= link_to "削除", post_path(@post.id), method: :delete, class:"btn btn-danger" %>
     <% end %>
 
@@ -17,7 +21,7 @@
       </tr>
       <tr>
         <th>代表者</th>
-        <td><%= @post.customer.nickname %></td>
+        <td><%= link_to @post.customer.nickname, customer_path(@post.customer_id) %></td>
         <td colspan="3"></td>
       </tr>
       <tr>
@@ -56,4 +60,7 @@
       </tr>
     </tbody>
   </table>
+  <div id="post_comment">
+    <%= render "post_comments/index", post_comments: @post_comments, post_comment: @post_comment, post: @post %>
+  </div>
 </div>

@@ -1,0 +1,26 @@
+ <h3 class="text-center">コメント</h3>
+  <div class="col-md-7 mx-auto">
+    <table class="table">
+      <tbody>
+        <% post_comments.each do |post_comment| %>
+          <tr>
+            <td>
+              <div class="mb-2">
+                <%= post_comment.customer.nickname %><br>
+              </div>
+              <%= post_comment.comment %>
+              <% if post_comment.customer_id == current_customer.id %>
+                <%= link_to "削除", post_post_comment_path(post.id, post_comment.id), method: :delete, remote: true, class:"btn btn-sm btn-danger ml-3" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <%= form_with model: post_comment, url: post_post_comments_path(post.id), method: :post, local: false do |f| %>
+        <%= f.text_field :comment, class:"form-control", placeholder:"コメント入力", id:"text_field" %>
+        <%= f.submit "コメント送信", class:"btn btn-primary mt-2" %>
+      <% end %>
+    </div>
+  </div>
