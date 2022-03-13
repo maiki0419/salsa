@@ -1,4 +1,4 @@
-class CustomerRoom <　ApplicationRecord
+class CustomerRoom < ApplicationRecord
 
   validates :customer_id, presence: true
   validates :room_id, presence: true
