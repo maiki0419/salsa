@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="d-flex">
        <div>
           <%= image_tag @customer.get_profile_image("150x150") %>
         </div>
-        <div class="ml-3 mt-2">
+        <div class="ml-5 mt-2">
           <%= link_to "フォロー", root_path, class:"btn btn-sm btn-primary mt-5" %><br>
           <%= link_to "チャット", root_path, class:"btn btn-sm btn-primary mt-2" %>
         </div>
@@ -31,26 +31,26 @@
           </tr>
            <tr>
             <th>自己紹介</th>
-            <td colspan="2"><%= @customer.introduction %></td>
+            <td colspan="2"><%= simple_format(@customer.introduction) %></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-md-7 offset-md-1 mx-auto">
-      <% if @customer_teams.present? %>
+    <div class="col-md-7  mx-auto">
+      <% if @team_customers.present? %>
        <div class="text-center">
           <h3>マイチーム</h3>
           <ul class="list-group">
-            <% @customer_teams.each do |team_id| %>
-              <% @team = Teams.find(team_id) %>
-              <li class="list-group-item"><%= link_to @team.name, team_path(@team.id) %></li>
+            <% @team_customers.each do |team_customer| %>
+              <li class="list-group-item"><%= link_to team_customer.team_name(team_customer.team_id), team_path(team_customer.team_id) %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
 
-      <div class="text-center">
-        <h3>お気に入り投稿</h3>
+      <div class="text-center mt-5">
+        <h2>お気に入り投稿</h2>
+        <%= render "posts/index", posts: @posts %>
       </div>
     </div>
   </div>

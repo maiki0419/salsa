@@ -12,7 +12,17 @@ class Post < ApplicationRecord
   validates :place,  length: {maximum: 20}
 
   belongs_to :customer
-  has_many :post_comments
-  has_many :favorites
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer.id)
+  end
+
+
+  def team_name(team_id)
+    Team.find(team_id).name
+  end
+
 
 end

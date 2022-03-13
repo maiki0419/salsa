@@ -1,0 +1,66 @@
+<div class="container">
+  <h2 class="text-center"><%= @post.title %></h2>
+  <div class="text-right">
+
+    <div id="post_<%= @post.id %>", class="mb-3">
+      <%= render "favorites/favorite", post: @post %>
+    </div>
+
+    <% if @post.customer == current_customer %>
+      <%= link_to "編集", edit_post_path(@post.id), class:"btn btn-success ml-3" %>
+      <%= link_to "削除", post_path(@post.id), method: :delete, class:"btn btn-danger" %>
+    <% end %>
+
+  </div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>カテゴリー</th>
+        <td><%= @post.post_categroy %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>代表者</th>
+        <td><%= link_to @post.customer.nickname, customer_path(@post.customer_id) %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>チーム名</th>
+        <td><%= @post.team_name(@post.team_id) %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>開催日</th>
+        <td><%= @post.start_date %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>募集期限</th>
+        <td><%= @post.deadline %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>活動エリア</th>
+        <td colspan="2"><%= @post.prefecture_id %><<%= @post.city %></td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <th>定員</th>
+        <td><%= @post.capacity %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>会場</th>
+        <td><%= @post.place %></td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <th>内容</th>
+        <td colspan="4"><%= @post.body %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="post_comment">
+    <%= render "post_comments/index", post_comments: @post_comments, post_comment: @post_comment, post: @post %>
+  </div>
+</div>

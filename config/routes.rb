@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
-    resources :favorites, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
 
   resources :rooms, only: [:create, :show, :destroy]

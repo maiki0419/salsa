@@ -1,0 +1,24 @@
+<% posts.each do |post| %>
+  <%= link_to post_path(post.id) do %>
+    <div class="card">
+      <h5 class="card-header"><%= post.title %></h5>
+      <div class="card-body text-left">
+        <p class="card-text">
+          <div class="d-flex">
+           <div class="mr-5">
+              代表者　　：<%= post.customer.nickname %><br>
+              エリア　　：<%= post.prefecture_id %><<%= post.city %><br>
+              募集期限　：<%= post.deadline %><br>
+            </div>
+            <div class="ml-5">
+              カテゴリー　：<%= post.post_categroy %><br>
+              コメント数　：<%= post.post_comments.count %><br>
+              お気に入り数：<%= post.favorites.count %>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>

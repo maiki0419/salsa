@@ -7,7 +7,11 @@
       チーム登録やコメントには会員登録が必要になります。
     </p>
   </div>
-  <div class="row mt-2">
-    <h1 class="mx-auto">新規募集</h1>
+
+  <h2 class="text-center mt-5">新規投稿</h2>
+
+  <div class="col-8 mx-auto">
+    <%= render "posts/index", posts: @posts %>
   </div>
+
 </div>
