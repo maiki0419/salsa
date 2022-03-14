@@ -2,7 +2,7 @@
   <h2 class="text-center">プロフィール編集</h2>
   <div class="row">
     <div class="col-md-5 mx-auto">
-      <%= form_with model: @customer, url:customer_path(@customer.id), method: :patch do |f| %>
+      <%= form_with model: @customer, url:customer_path(@customer.id), method: :patch, local:true do |f| %>
 
         <%= f.label :"ニックネーム(必須)", class:"mt-5" %>
         <%= f.text_field :nickname, class:"form-control" %>

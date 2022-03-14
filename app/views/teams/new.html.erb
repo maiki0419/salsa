@@ -1,7 +1,7 @@
 <div class="container">
   <h2>チーム登録</h2>
 
-      <%= form_with model: @team, url: teams_path, method: :post do |f| %>
+      <%= form_with model: @team, url: teams_path, method: :post, local:true do |f| %>
         <div class="row">
           <div class="col-md-5">
 

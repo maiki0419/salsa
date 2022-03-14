@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row mb-5">
+        <h2>予定・成績</h2>
+        <div class="ml-auto">
+            <%= form_with model: @schedule, url: team_schedules_path(@team.id), method: :post, local:true do |f| %>
+                <%= f.label :タイトル %>
+                <%= f.text_field :title %><br>
+                <%= f.label :予定開始 %>
+                <%= f.datetime_select :starts_at %><br>
+                <%= f.label :予定終了 %>
+                <%= f.datetime_select :ends_at %><br>
+                <%= f.submit "予定登録", class:"btn btn-primary" %>
+            <% end %>
+        </div>
+
+    </div>
+
+  <div id='calendar'></div>
+</div>
