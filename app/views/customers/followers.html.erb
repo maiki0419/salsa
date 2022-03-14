@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 class="text-center mb-5">フォロー一覧</h2>
+  <table class="table">
+    <tdoby>
+      <% @followers.each do |follower| %>
+        <tr>
+          <td>
+            <%= image_tag follower.get_profile_image("100x100") %>
+          </td>
+          <td>
+            <%= follower.nickname %>
+          </td>
+          <td>
+            <%= render "relationships/follow", customer: follower %>
+          </td>
+        </tr>
+      <% end %>
+    </tdoby>
+  </table>
+</div>

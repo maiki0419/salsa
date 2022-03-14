@@ -23,13 +23,10 @@ class Customer < ApplicationRecord
   has_many :favorite_posts, through: :favorites, source: :post
 
   # フォロー機能アソシエーション
-  has_many :relationships, foreign_key: :followed_id
+  has_many :relationships, foreign_key: :follower_id
   has_many :followers, through: :relationships, source: :followed
   has_many :revers_of_relationships, class_name: "Relationship", foreign_key: :followed_id
   has_many :followeds, through: :revers_of_relationships, source: :follower
-
-
-
 
 
   has_one_attached :profile_image
@@ -41,6 +38,10 @@ class Customer < ApplicationRecord
       profile_image.attach(io: File.open(file_path),filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize: size).processed
+  end
+
+  def followed_by?(customer)
+    relationships.exists?(followed_id: customer.id)
   end
 
 

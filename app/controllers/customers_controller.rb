@@ -21,6 +21,18 @@ class CustomersController < ApplicationController
     end
   end
 
+
+  def followers
+    @customer = Customer.find(params[:id])
+    @followers = @customer.followers
+  end
+
+  def followeds
+    @customer = Customer.find(params[:id])
+    @followeds = @customer.followeds
+  end
+
+
   private
 
   def customer_params
