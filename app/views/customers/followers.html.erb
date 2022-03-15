@@ -8,7 +8,7 @@
             <%= image_tag follower.get_profile_image("100x100") %>
           </td>
           <td>
-            <%= follower.nickname %>
+            <%= link_to follower.nickname, customer_path(follower.id) %>
           </td>
           <td>
             <%= render "relationships/follow", customer: follower %>
