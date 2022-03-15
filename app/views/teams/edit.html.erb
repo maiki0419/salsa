@@ -1,7 +1,7 @@
 <div class="container">
     <h2>チーム編集</h2>
 
-    <%= form_with model: @team, url: team_path, method: :patch do |f| %>
+    <%= form_with model: @team, url: team_path, method: :patch, local:true do |f| %>
       <div class="row">
         <div class="col-md-5">
 
