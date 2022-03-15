@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row mb-5">
-        <h2>予定・成績</h2>
+        <h2><%= @team.name %>の予定・成績</h2>
         <div class="ml-auto">
             <%= form_with model: @schedule, url: team_schedules_path(@team.id), method: :post, local:true do |f| %>
                 <%= f.label :タイトル %>
@@ -12,8 +12,95 @@
                 <%= f.submit "予定登録", class:"btn btn-primary" %>
             <% end %>
         </div>
+    </div>
+    <div class="row">
+        <p><strong>予定一覧</strong></p>
+        <table class="table">
+            <tbody>
+                <% @schedules_index.each do |schedule| %>
+                    <tr>
+                        <td><%= schedule.title %></td>
+                        <td><%= schedule.starts_at %></td>
+                        <td><%= schedule.ends_at %></td>
+                        <% if @team.owner_id == current_customer.id %>
+                            <td><%= link_to "削除", team_schedule_path(@team.id,schedule.id), method: :delete, class:"btn btn-danger" %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+                <%= paginate @schedules_index %>
+            </tbody>
+        </table>
+    </div>
+    <!--fullcalendar-->
+    <div id='calendar'></div>
 
+    <div class="row">
+        <%= form_with model: @team_record, url: team_team_records_path(@team.id), method: :post, local: true do |f| %>
+            <div class="d-md-flex mt-5 mb-3">
+                <div class="mr-2">
+                    <%= f.label :日程%><br>
+                    <%= f.text_field :day, placeholder:"例）3/15" %>
+                </div>
+                <div class="mr-2">
+                    <%= f.label :場所 %><br>
+                    <%= f.text_field :place %>
+                </div>
+                 <div class="mr-2">
+                    <%= f.label :対戦相手 %><br>
+                    <%= f.text_field :opponent %>
+                </div>
+                 <div class="mr-2">
+                    <%= f.label :スコア %><br>
+                    <%= f.text_field :score, placeholder:"例）1-1" %>
+                </div>
+                 <div class="mr-2">
+                    <%= f.label :備考 %><br>
+                    <%= f.text_field :note, placeholder:"30文字以内" %>
+                </div>
+                 <div class="mr-2">
+                    <%= f.label :結果 %><br>
+                    <%= f.select :result, [["○","○"],["△","△"],["×","×"]] %>
+                </div>
+
+            </div>
+
+            <div class="text-right mb-3">
+                <%= f.submit "成績入力", class:"btn btn-primary" %>
+            </div>
+
+        <% end %>
+        <p><strong>成績一覧</strong></p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>日程</th>
+                    <th>場所</th>
+                    <th>対戦相手</th>
+                    <th>スコア</th>
+                    <th>備考</th>
+                    <th>結果</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @team_records.each do |team_record| %>
+                    <tr>
+                        <td><%= team_record.day %></td>
+                        <td><%= team_record.place %></td>
+                        <td><%= team_record.opponent %></td>
+                        <td><%= team_record.score %></td>
+                        <td><%= team_record.note %></td>
+                        <td><%= team_record.result %></td>
+                        <% if @team.owner_id == current_customer.id %>
+                            <td><%= link_to "削除", team_team_record_path(@team.id,team_record.id), method: :delete, class:"btn btn-danger" %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
     </div>
 
-  <div id='calendar'></div>
+
+
+
 </div>

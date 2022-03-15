@@ -4,7 +4,12 @@ class SchedulesController < ApplicationController
   def index
     @team = Team.find(params[:team_id])
     @schedule = Schedule.new
-    @schedules = Schedule.all
+    @team_record = TeamRecord.new
+    @team_records = TeamRecord.where(team_id: @team.id)
+    # 予定一覧用
+    @schedules_index = Schedule.where(team_id: @team.id).page(params[:page]).per(5)
+    # fullcalendar用
+    @schedules = Schedule.where(team_id: @team.id)
   end
 
   def create
@@ -21,7 +26,9 @@ class SchedulesController < ApplicationController
 
 
   def destroy
-
+    @schedule = Schedule.find_by(team_id: params[:team_id], id: params[:id])
+    @schedule.destroy
+    redirect_to request.referer
   end
 
   private
