@@ -28,7 +28,7 @@
       </div>
       <div class="mt-5">
         <%= form_with model: @chat, url: chats_path, method: :post, local: false do |f| %>
-          <%= f.text_field :message, class:"form-control", id:"chat_text", placeholder:"チャット入力" %>
+          <%= f.text_area :message, class:"form-control", id:"chat_text", placeholder:"チャット入力" %>
           <%= f.hidden_field :room_id, value:"#{@room.id}" %>
           <div class="text-right">
              <%= f.submit "チャット送信", class:"btn btn-primary mt-3" %>
