@@ -8,6 +8,8 @@ class PostCommentsController < ApplicationController
     @post_comment.post_id = params[:post_id]
     if @post_comment.save
       flash[:notice] = "コメントを送信しました。"
+      # コメント通知
+      @post.create_notification_comment!(current_customer, @post_comment.id)
 
     else
       flash[:alert] = "コメントの送信に失敗しました。"

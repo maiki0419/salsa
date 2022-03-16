@@ -1,0 +1,18 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="container">
+  <div class="col-md-6 mx-auto">
+    <div class="form-inline">
+      <%= link_to "#{visitor.nickname}さんが", customer_path(visitor.id) %>
+      <% case notification.action %>
+        <% when 'follow' then %>
+          <%= "あなたをフォローしました" %>
+        <% when 'like' then %>
+          <%= "あなたの投稿にいいねしました" %>
+        <% when 'comment' then %>
+          <%= "あなたの投稿にコメントしました" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
