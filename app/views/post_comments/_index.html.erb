@@ -6,7 +6,7 @@
           <tr>
             <td>
               <div class="mb-2">
-                <%= post_comment.customer.nickname %><br>
+                <%= link_to post_comment.customer.nickname, customer_path(post_comment.customer.id) %><br>
               </div>
               <%= post_comment.comment %>
               <% if post_comment.customer_id == current_customer.id %>
