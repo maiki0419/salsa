@@ -20,8 +20,8 @@
                 <% @schedules_index.each do |schedule| %>
                     <tr>
                         <td><%= schedule.title %></td>
-                        <td><%= schedule.starts_at %></td>
-                        <td><%= schedule.ends_at %></td>
+                        <td><%= schedule.starts_at.strftime("%m-%e-%y %H:%M") %></td>
+                        <td><%= schedule.ends_at.strftime("%m-%e-%y %H:%M") %></td>
                         <% if @team.owner_id == current_customer.id %>
                             <td><%= link_to "削除", team_schedule_path(@team.id,schedule.id), method: :delete, class:"btn btn-danger" %></td>
                         <% end %>
@@ -69,7 +69,7 @@
             </div>
 
         <% end %>
-        <p><strong>成績一覧</strong></p>
+
         <table class="table table-bordered">
             <thead>
                 <tr>

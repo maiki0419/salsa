@@ -14,7 +14,12 @@
 
     </div>
     <div class="col-md-8">
-      <h3><%= @customer.nickname %>さんとのチャット</h3>
+      <% if @customer == current_customer %>
+        <h3>メモ用チャット</h3>
+      <% else %>
+        <h3><%= @customer.nickname %>さんとのチャット</h3>
+      <% end %>
+
       <div class="text-right mb-5">
         <%= link_to "チャットを退出", room_path(@room.id), method: :delete, class:"btn btn-danger" %>
       </div>
@@ -23,7 +28,7 @@
       </div>
       <div class="mt-5">
         <%= form_with model: @chat, url: chats_path, method: :post, local: false do |f| %>
-          <%= f.text_field :message, class:"form-control", id:"chat_text" %>
+          <%= f.text_field :message, class:"form-control", id:"chat_text", placeholder:"チャット入力" %>
           <%= f.hidden_field :room_id, value:"#{@room.id}" %>
           <div class="text-right">
              <%= f.submit "チャット送信", class:"btn btn-primary mt-3" %>

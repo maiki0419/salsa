@@ -8,6 +8,8 @@
         <div class="ml-5 mt-2">
           <% if @customer != current_customer %>
             <%= link_to "チャット", room_path(@customer.id), class:"btn btn-sm btn-primary mt-5" %><br>
+          <% else %>
+            <%= link_to "チャット", room_path(current_customer.id), class:"btn btn-sm btn-primary mt-5" %><br>
           <% end %>
 
           <div id="follow">

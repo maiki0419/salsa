@@ -1,9 +1,5 @@
 class RoomsController < ApplicationController
 
-  def create
-
-  end
-
   def show
     @customer = Customer.find(params[:id])
     # ログインユーザーが入室しているルームのidを取得
@@ -41,7 +37,7 @@ class RoomsController < ApplicationController
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
-    redirect_to customer_path(current_customer.id)
+    redirect_to room_path(current_customer.id)
   end
 
 end
