@@ -1,5 +1,9 @@
 <div class="container">
     <h2>チーム編集</h2>
+    <div class="text-right">
+      <%= link_to "チーム削除", team_path(@team.id), method: :delete, class:"btn btn-danger" %>
+    </div>
+
 
     <%= form_with model: @team, url: team_path, method: :patch, local:true do |f| %>
       <div class="row">

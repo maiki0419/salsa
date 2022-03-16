@@ -42,7 +42,9 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-
+    @team = Team.find(params[:id])
+    @team.destroy
+    redirect_to customer_path(current_customer)
   end
 
   private
