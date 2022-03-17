@@ -3,12 +3,15 @@ class ChatsController < ApplicationController
 
 
   def create
-    @chat = current_customer.chats.new(chat_params)
-    if @chat.save
-      @chats = @chat.room.chats
-    else
-      @chats = @chat.room.chats
+    @chat = current_customer.chats.create(chat_params)
+    @customer_rooms = @chat.room.customer_rooms
+    @customer_rooms.each do |customer_room|
+      if current_customer.id != customer_room.customer_id
+        @customer_id = customer_room.customer_id
+      end
     end
+    @chat.create_notification_chat!(current_customer, @chat.id, @customer_id)
+    @chats = @chat.room.chats
   end
 
   def destroy
