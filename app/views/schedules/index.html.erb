@@ -1,17 +1,20 @@
 <div class="container">
     <div class="row mb-5">
         <h2><%= @team.name %>の予定・成績</h2>
-        <div class="ml-auto">
-            <%= form_with model: @schedule, url: team_schedules_path(@team.id), method: :post, local:true do |f| %>
-                <%= f.label :タイトル %>
-                <%= f.text_field :title %><br>
-                <%= f.label :予定開始 %>
-                <%= f.datetime_select :starts_at %><br>
-                <%= f.label :予定終了 %>
-                <%= f.datetime_select :ends_at %><br>
-                <%= f.submit "予定登録", class:"btn btn-primary" %>
-            <% end %>
-        </div>
+        <% if @team.owner_id == current_customer.id %>
+            <div class="ml-auto">
+                <%= form_with model: @schedule, url: team_schedules_path(@team.id), method: :post, local:true do |f| %>
+                    <%= f.label :タイトル %>
+                    <%= f.text_field :title %><br>
+                    <%= f.label :予定開始 %>
+                    <%= f.datetime_select :starts_at %><br>
+                    <%= f.label :予定終了 %>
+                    <%= f.datetime_select :ends_at %><br>
+                    <%= f.submit "予定登録", class:"btn btn-primary" %>
+                <% end %>
+            </div>
+        <% end %>
+
     </div>
     <div class="row">
         <p><strong>予定一覧</strong></p>
@@ -20,8 +23,8 @@
                 <% @schedules_index.each do |schedule| %>
                     <tr>
                         <td><%= schedule.title %></td>
-                        <td><%= schedule.starts_at.strftime("%m-%e-%y %H:%M") %></td>
-                        <td><%= schedule.ends_at.strftime("%m-%e-%y %H:%M") %></td>
+                        <td><%= schedule.starts_at.strftime("%m-%e %H:%M") %></td>
+                        <td><%= schedule.ends_at.strftime("%m-%e %H:%M") %></td>
                         <% if @team.owner_id == current_customer.id %>
                             <td><%= link_to "削除", team_schedule_path(@team.id,schedule.id), method: :delete, class:"btn btn-danger" %></td>
                         <% end %>
@@ -35,41 +38,44 @@
     <div id='calendar'></div>
 
     <div class="row">
-        <%= form_with model: @team_record, url: team_team_records_path(@team.id), method: :post, local: true do |f| %>
-            <div class="d-md-flex mt-5 mb-3">
-                <div class="mr-2">
-                    <%= f.label :日程%><br>
-                    <%= f.text_field :day, placeholder:"例）3/15" %>
-                </div>
-                <div class="mr-2">
-                    <%= f.label :場所 %><br>
-                    <%= f.text_field :place %>
-                </div>
-                 <div class="mr-2">
-                    <%= f.label :対戦相手 %><br>
-                    <%= f.text_field :opponent %>
-                </div>
-                 <div class="mr-2">
-                    <%= f.label :スコア %><br>
-                    <%= f.text_field :score, placeholder:"例）1-1" %>
-                </div>
-                 <div class="mr-2">
-                    <%= f.label :備考 %><br>
-                    <%= f.text_field :note, placeholder:"30文字以内" %>
-                </div>
-                 <div class="mr-2">
-                    <%= f.label :結果 %><br>
-                    <%= f.select :result, [["○","○"],["△","△"],["×","×"]] %>
+        <% if @team.owner_id == current_customer.id %>
+            <%= form_with model: @team_record, url: team_team_records_path(@team.id), method: :post, local: true do |f| %>
+                <div class="d-md-flex mt-5 mb-3">
+                    <div class="mr-2">
+                        <%= f.label :日程%><br>
+                        <%= f.text_field :day, placeholder:"例）3/15" %>
+                    </div>
+                    <div class="mr-2">
+                        <%= f.label :場所 %><br>
+                        <%= f.text_field :place %>
+                    </div>
+                     <div class="mr-2">
+                        <%= f.label :対戦相手 %><br>
+                        <%= f.text_field :opponent %>
+                    </div>
+                     <div class="mr-2">
+                        <%= f.label :スコア %><br>
+                        <%= f.text_field :score, placeholder:"例）1-1" %>
+                    </div>
+                     <div class="mr-2">
+                        <%= f.label :備考 %><br>
+                        <%= f.text_field :note, placeholder:"30文字以内" %>
+                    </div>
+                     <div class="mr-2">
+                        <%= f.label :結果 %><br>
+                        <%= f.select :result, [["○","○"],["△","△"],["×","×"]] %>
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="text-right mb-3">
+                    <%= f.submit "成績入力", class:"btn btn-primary" %>
+                </div>
 
-            <div class="text-right mb-3">
-                <%= f.submit "成績入力", class:"btn btn-primary" %>
-            </div>
+            <% end %>
+         <% end %>
 
-        <% end %>
-
+        <p class="mt-5"><strong>成績一覧</strong></p>
         <table class="table table-bordered">
             <thead>
                 <tr>

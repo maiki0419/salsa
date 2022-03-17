@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-
+before_action :authenticate_customer!
   def show
     @customer = Customer.find(params[:id])
     # ログインユーザーが入室しているルームのidを取得
@@ -17,6 +17,8 @@ class RoomsController < ApplicationController
     end
     @chat = Chat.new
     @chats = @room.chats
+    
+    
     # ログインユーザーがチャットをしている会員のidを入れる配列
     @chat_customers_id = []
     @rooms.each do |room|

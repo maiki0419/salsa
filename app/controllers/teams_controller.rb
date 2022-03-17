@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+before_action :authenticate_customer!, except: [:index]
+before_action :correct_customer, only: [:edit, :update]
 
   def new
     @team = Team.new
@@ -53,5 +55,11 @@ class TeamsController < ApplicationController
     params.require(:team).permit(:owner_id, :name, :prefecture_id, :city, :member_count, :age, :level, :activities_time, :founded, :team_image, :introduction)
   end
 
+  def correct_customer
+    @team =Team.find(params[:id])
+    if @team.owner_id != current_customer.id
+      redirect_to team_path(@team.id)
+    end
+  end
 
 end

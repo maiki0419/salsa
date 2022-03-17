@@ -10,7 +10,7 @@
           <%= f.select :post_categroy, [["対戦相手募集","対戦相手募集"], ["チームメンバー募集","チームメンバー募集"], ["助っ人募集","助っ人募集"]], class:"ml-3" %><br>
 
           <%= f.label :"チーム名", class:"mt-4" %><br>
-          <%= f.select :team_id, @teams.map{ |team| [team.team_name(team.team.id), team.team_id] } + [["その他", "0"]] %><br>
+          <%= f.select :team_id, @teams.map{ |team| [team.team_name(team.team.id), team.team_id] }  %><br>
 
           <%= f.label :"タイトル(必須)", class:"mt-5" %>
           <%= f.text_field :title, class:"form-control" %>

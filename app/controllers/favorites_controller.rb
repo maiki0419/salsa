@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-
+before_action :authenticate_customer!
   def create
     @post = Post.find(params[:post_id])
     # お気に入り通知
