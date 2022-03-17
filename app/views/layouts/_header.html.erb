@@ -11,6 +11,17 @@
             <li class="nav-item">
               <span class="nav-link text-white">ようこそ、<%= current_customer.nickname %>さん</span>
             </li>
+            <li class="nav-item">
+              <%= link_to  notifications_path do %>
+                <% if unchecked_notifications.any? %>
+                   <i class="fa-solid fa-bell ml-2 mb-2 mt-1 text-warning"><%= unchecked_notifications.count %></i>
+
+                <% else %>
+                  <i class="fa-solid fa-bell ml-2 mb-2 mt-1 text-white"></i>
+                <% end %>
+
+              <% end %>
+            </li>
             <li class="nav-item"><%= link_to "マイページ", customer_path(current_customer.id), class: 'btn btn-outline-light ml-2 mb-2' %></li>
             <li class="nav-item"><%= link_to "チーム一覧", teams_path, class: 'btn btn-outline-light ml-2 mb-2' %></li>
             <li class="nav-item"><%= link_to "募集一覧", posts_path, class: 'btn btn-outline-light ml-2 mb-2' %></li>
