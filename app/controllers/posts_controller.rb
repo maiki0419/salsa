@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+before_action :authenticate_customer!, except: [:index]
+before_action :not_team, only: [:new]
+before_action :correct_customer, only: [:edit, :update]
 
 
   def new
@@ -54,6 +57,20 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:team_id, :post_categroy, :title, :body, :start_date, :deadline, :prefecture_id, :city, :capacity, :place)
+  end
+
+  def not_team
+    if current_customer.team_customers.blank?
+      redirect_to new_team_path
+    end
+  end
+
+  def correct_customer
+    @post = Post.find(params[:id])
+    if @post.customer.id != current_customer.id
+      redirect_to post_path(@post.id)
+    end
+
   end
 
 

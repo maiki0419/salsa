@@ -1,4 +1,6 @@
 class SchedulesController < ApplicationController
+before_action :authenticate_customer!
+before_action :correct_owner, only: [:create, :destroy]
 
 
   def index
@@ -36,6 +38,7 @@ class SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).permit(:title, :starts_at, :ends_at)
   end
+
 
 
 end
