@@ -2,7 +2,13 @@ class FavoritesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
+    # お気に入り通知
+    @post.create_notification_like!(current_customer)
+
     @favorite = current_customer.favorites.create(post_id: @post.id)
+
+
+
   end
 
   def destroy

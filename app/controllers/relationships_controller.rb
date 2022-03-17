@@ -2,6 +2,10 @@ class RelationshipsController < ApplicationController
 
   def create
     current_customer.relationships.create(followed_id: params[:customer_id])
+    # フォロー通知
+    @customer = Customer.find(params[:customer_id])
+    @customer.create_notification_follow!(current_customer)
+
     redirect_to request.referer
   end
 
@@ -10,6 +14,6 @@ class RelationshipsController < ApplicationController
     redirect_to request.referer
   end
 
-  
+
 
 end

@@ -8,6 +8,8 @@ class PostCommentsController < ApplicationController
     @post_comment.post_id = params[:post_id]
     if @post_comment.save
       flash[:notice] = "コメントを送信しました。"
+      # コメント通知
+      @post.create_notification_comment!(current_customer, @post_comment.id)
 
     else
       flash[:alert] = "コメントの送信に失敗しました。"
@@ -18,7 +20,7 @@ class PostCommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @post_comments = @post.post_comments
-    @post_comment = current_customer.post_comments.find_by(post_id: params[:post_id])
+    @post_comment = current_customer.post_comments.find_by(post_id: params[:post_id],id: params[:id])
     @post_comment.destroy
 
   end
