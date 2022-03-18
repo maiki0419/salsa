@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   belongs_to :customer
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_customers, through: :favorites, source: :customer
   has_many :notifications, dependent: :destroy
 
   def favorited_by?(customer)
