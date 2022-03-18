@@ -7,6 +7,9 @@
       <% case notification.action %>
         <% when 'follow' then %>
           <%= "あなたをフォローしました" %>
+        <% when 'chat' then %>
+          <%= link_to "あなたにチャット", room_path(visitor.id) %>
+          <%= "をしました。" %>
         <% when 'like' then %>
           <%= link_to "あなたの投稿",post_path(notification.post) %>
           <%= "いいねしました" %>
@@ -20,6 +23,7 @@
           <p class="text-muted mb-0">
             <%= PostComment.find_by(id: notification.post_comment_id)&.comment %>
           </p>
+
       <% end %>
       <dvi class="small text-muted text-right">
         <%= time_ago_in_words(notification.created_at) %>

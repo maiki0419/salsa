@@ -5,8 +5,9 @@
     </div>
     <div class="row">
       <div class="mx-auto">
+        <%= render "layouts/errors", object: @customer %>
         <%= form_with model: @customer, url: customer_registration_path do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+
 
           <div class="field">
             <%= f.label :ニックネーム %><br />

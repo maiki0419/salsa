@@ -1,6 +1,6 @@
 <div class="container">
   <h2>チーム登録</h2>
-
+      <%= render "layouts/errors", object: @team %>
       <%= form_with model: @team, url: teams_path, method: :post, local:true do |f| %>
         <div class="row">
           <div class="col-md-5">
@@ -15,7 +15,7 @@
 
             <%= f.text_field :city, class:"form-control mt-3", placeholder:"市区町村" %>
 
-            <%= f.label :"メンバー数(必須)", class:"mt-3" %>
+            <%= f.label :"メンバー数", class:"mt-3" %>
             <%= f.text_field :member_count, class:"form-control" %>
 
             <%= f.label :"年代", class:"mt-3" %>
