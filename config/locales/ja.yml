@@ -1,0 +1,40 @@
+ja:
+ activerecord:
+   attributes:
+     customer:
+        nickname: ニックネーム
+        email:  メール
+        password: パスワード
+        prefecture_id:  都道府県
+        city: 市区町村
+        gender_id:  性別
+        age:  年齢
+        introduction: 自己紹介
+     team:
+        name: チーム名
+        prefecture_id:  都道府県
+        city: 市区町村
+        level:  チームレベル
+        age:  年代
+        member_count: メンバー数
+        introduction: チーム紹介
+        activities_time:  活動日時
+        founded:  創立年
+     schedule:
+        title:  タイトル
+     team_record:
+        day:  日程
+        place:  場所
+        opponent: 対戦相手
+        score:  スコア
+        result: 結果
+     post:
+        post_categroy:  投稿カテゴリー
+        title:  タイトル
+        body: 投稿内容
+        start_date: 開催日
+        deadline: 募集期限
+        prefecture_id:  都道府県
+        city: 市区町村
+        capacity: 定員
+        place:  場所

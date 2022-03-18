@@ -16,12 +16,20 @@ before_action :correct_customer, only: [:edit, :update]
       redirect_to post_path(@post.id)
     else
       flash[:alert] = "投稿に失敗しました。"
+       @teams = current_customer.team_customers
       render :new
     end
   end
 
   def index
-    @posts = Post.all
+    if params[:sort] == "favorite"
+      @posts = Post.all.page(params[:page]).per(10).sort{ |a,b| b.favorite_customers.size <=> a.favorite_customers.size }
+    elsif params[:sort] == "follow"
+      @follow = current_customer.followers
+      @posts = Post.where(customer_id: @follow).page(params[:page]).per(10)
+    else
+      @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(10)
+    end
   end
 
 
@@ -43,6 +51,7 @@ before_action :correct_customer, only: [:edit, :update]
       redirect_to post_path(@post.id)
     else
       flash[:alert] = "更新に失敗しました。"
+      @teams = current_customer.team_customers
       render :edit
     end
   end

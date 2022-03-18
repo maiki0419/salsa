@@ -1,6 +1,8 @@
 <div class="container">
     <h2>投稿作成</h2>
 
+    <%= render "layouts/errors", object: @post %>
+
     <%= form_with model: @post, url: posts_path, method: :post, local:true do |f| %>
       <div class="row">
         <div class="col-md-5">

@@ -19,7 +19,7 @@ before_action :correct_customer, only: [:edit, :update]
   end
 
   def index
-    @teams = Team.all.order(created_at: :DESC)
+    @teams = Team.all.order(created_at: :DESC).page(params[:page]).per(10)
   end
 
 

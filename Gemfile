@@ -61,3 +61,4 @@ group :production do
 end
 
 gem 'kaminari', '~> 1.2'
+gem 'rails-i18n'
