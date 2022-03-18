@@ -11,7 +11,9 @@
             <%= link_to follower.nickname, customer_path(follower.id) %>
           </td>
           <td>
-            <%= render "relationships/follow", customer: follower %>
+            <div id="follow_<%= follower.id %>">
+              <%= render "relationships/follow", customer: follower %>
+            </div>
           </td>
         </tr>
       <% end %>
