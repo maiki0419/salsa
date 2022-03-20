@@ -16,7 +16,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_customers, through: :favorites, source: :customer
   has_many :notifications, dependent: :destroy
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tags
 
+# お気に入りしているかどうか調べる
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
@@ -40,9 +43,7 @@ class Post < ApplicationRecord
       end
       # 後置if　バリデーションが合格であればセーブを行う
       notification.save if notification.valid?
-
     end
-
   end
 
 
@@ -64,12 +65,24 @@ class Post < ApplicationRecord
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end
-
     notification.save if notification.valid?
-
   end
 
 
+  def save_tag(sent_tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - sent_tags
+    new_tags = sent_tags - current_tags
 
+    old_tags.each do |old_|
+      self.tags.delete Tag.find_by(name: old)
+    end
+
+    new_tags.each do |new|
+      new_post_tag = Tag.find_or_create_by(name: new)
+      self.tags << new_post_tag
+    end
+
+  end
 
 end

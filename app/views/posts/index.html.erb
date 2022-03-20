@@ -10,5 +10,6 @@
   <div class="col-8 mx-auto">
     <%= link_to "お気に入り順", posts_path(sort: "favorite") %>/<%= link_to "フォロー中", posts_path(sort: "follow") %>
     <%= render "posts/index", posts: @posts %>
+    <%= paginate @posts %>
   </div>
 </div>

@@ -25,6 +25,14 @@
         <td colspan="3"></td>
       </tr>
       <tr>
+        <th>タグ</th>
+        <td colspan="4">
+          <% @post_tags.each do |post_tag| %>
+            <%= post_tag.name %><%= "(#{post_tag.posts.count})/" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
         <th>チーム名</th>
           <td><%= @post.team_name(@post.team_id) %></td>
         <td colspan="3"></td>
