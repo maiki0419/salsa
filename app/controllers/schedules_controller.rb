@@ -1,6 +1,5 @@
 class SchedulesController < ApplicationController
 before_action :authenticate_customer!
-before_action :correct_owner, only: [:create, :destroy]
 
 
   def index
