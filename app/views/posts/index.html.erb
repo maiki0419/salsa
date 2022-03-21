@@ -8,7 +8,9 @@
   <h2 class="text-center mt-5">投稿一覧</h2>
 
   <div class="col-8 mx-auto">
-    <%= link_to "お気に入り順", posts_path(sort: "favorite") %>/<%= link_to "フォロー中", posts_path(sort: "follow") %>
+    <%= link_to "お気に入り順", posts_path(sort: "favorite") %>/
+    <%= link_to "フォロー中", posts_path(sort: "follow") %>/
+    <%= link_to "タグ一覧", root_path %>
     <%= render "posts/index", posts: @posts %>
     <%= paginate @posts %>
   </div>

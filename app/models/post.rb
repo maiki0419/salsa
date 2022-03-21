@@ -68,16 +68,19 @@ class Post < ApplicationRecord
     notification.save if notification.valid?
   end
 
-
+# タグの保存
   def save_tag(sent_tags)
+    # postに結びついているタグの名前を取り出しタグがあるか確認する
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # postに結びついているタグから必要のない古いタグをold_tagsに入れる（編集時に使用）
     old_tags = current_tags - sent_tags
+    # 新しいタグをnew_tagsに入れる
     new_tags = sent_tags - current_tags
-
+    # 古いタグを削除
     old_tags.each do |old_|
       self.tags.delete Tag.find_by(name: old)
     end
-
+    # 新しいタグを追加
     new_tags.each do |new|
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag

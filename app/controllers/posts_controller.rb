@@ -29,6 +29,9 @@ before_action :correct_customer, only: [:edit, :update]
     elsif params[:sort] == "follow"
       @follow = current_customer.followers
       @posts = Post.where(customer_id: @follow).page(params[:page]).per(10)
+    elsif params[:sort] == "tag"
+      tag = Tag.find_by(name: "#{params[:tag]}")
+      @posts = tag.posts.page(params[:page]).per(10)
     else
       @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(10)
     end
