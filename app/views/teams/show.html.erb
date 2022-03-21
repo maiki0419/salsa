@@ -56,7 +56,9 @@
       </div>
       <div class="text-center mt-5">
         <h2>チームの投稿</h2>
+         <%= paginate @posts %>
         <%= render "posts/index", posts: @posts %>
+
       </div>
     </div>
   </div>

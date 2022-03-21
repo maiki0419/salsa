@@ -25,7 +25,7 @@ before_action :correct_customer, only: [:edit, :update]
 
   def show
     @team = Team.find(params[:id])
-    @posts = Post.where(team_id: @team.id)
+    @posts = Post.where(team_id: @team.id).order(created_at: "DESC").page(params[:page]).per(10)
   end
 
   def edit
