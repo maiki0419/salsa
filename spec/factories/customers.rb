@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :customer do
+  factory :customer, aliases: [:visited, :visitor, :follower, :followed] do
     nickname {Faker::Name.name}
     email {Faker::Internet.email}
     password {"1234567"}
