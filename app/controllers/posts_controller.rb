@@ -25,7 +25,8 @@ before_action :correct_customer, only: [:edit, :update]
 
   def index
     if params[:sort] == "favorite"
-      @posts = Post.all.page(params[:page]).per(10).sort{ |a,b| b.favorite_customers.size <=> a.favorite_customers.size }
+      posts = Post.all.sort{ |a,b| b.favorite_customers.size <=> a.favorite_customers.size }
+      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
     elsif params[:sort] == "follow"
       @follow = current_customer.followers
       @posts = Post.where(customer_id: @follow).page(params[:page]).per(10)

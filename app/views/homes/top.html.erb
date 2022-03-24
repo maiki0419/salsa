@@ -8,19 +8,18 @@
     </p>
   </div>
 
-  <h2 class="text-center mt-3">タグ一覧</h2>
-  <div class="col-8 mx-auto">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-primary mt-4 form-control" %><br>
+      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-success mt-3 form-control" %>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-5">タグ一覧</h2>
+  <div class="col-10 mx-auto mt-3">
     <% @tags.each do |tag| %>
       <%= link_to tag.name + "(#{tag.posts.count})", posts_path(sort: "tag", tag: "#{tag.name}") %>/
     <% end %>
-  </div>
-
-
-  <h2 class="text-center mt-5">新規投稿</h2>
-
-  <div class="col-8 mx-auto">
-    <%= render "posts/index", posts: @posts %>
-    <%= paginate @posts %>
   </div>
 
 </div>
