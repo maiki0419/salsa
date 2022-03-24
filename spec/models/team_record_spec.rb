@@ -84,10 +84,10 @@ RSpec.describe TeamRecord, type: :model do
 
     context "noteカラム" do
 
-      it "30文字以上の場合エラー" do
-        team_record.note = Faker::Lorem.characters(number: 31)
+      it "200文字以上の場合エラー" do
+        team_record.note = Faker::Lorem.characters(number: 201)
         team_record.valid?
-        expect(team_record.errors[:note]).to include("は30文字以内で入力してください")
+        expect(team_record.errors[:note]).to include("は200文字以内で入力してください")
       end
 
     end
@@ -109,11 +109,11 @@ RSpec.describe TeamRecord, type: :model do
     end
 
   end
-  
+
   describe "アソシエーションテスト" do
 
     let(:association) {described_class.reflect_on_association(target)}
-    
+
     context "Teamモデルとの関連" do
 
       let(:target) {:team}
@@ -125,9 +125,9 @@ RSpec.describe TeamRecord, type: :model do
       it "関連しているモデル" do
         expect(association.class_name).to eq "Team"
       end
-      
+
     end
-    
+
   end
 
 end

@@ -1,5 +1,10 @@
 class TeamRecordsController < ApplicationController
 
+  def show
+    @team = Team.find(params[:team_id])
+    @team_record = TeamRecord.find(params[:id])
+  end
+
 
   def create
     @team = Team.find(params[:team_id])
@@ -21,7 +26,7 @@ class TeamRecordsController < ApplicationController
   def destroy
     @team_record = TeamRecord.find_by(team_id: params[:team_id], id: params[:id])
     @team_record.destroy
-    redirect_to request.referer
+    redirect_to team_schedules_path
   end
 
   private

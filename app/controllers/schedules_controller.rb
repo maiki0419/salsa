@@ -21,6 +21,8 @@ before_action :authenticate_customer!
       redirect_to request.referer
     else
       flash[:alert] = "予定登録に失敗しました。"
+      @team_records = TeamRecord.where(team_id: @team.id)
+      @schedules_index = Schedule.where(team_id: @team.id).page(params[:page]).per(5)
       render :index
     end
   end

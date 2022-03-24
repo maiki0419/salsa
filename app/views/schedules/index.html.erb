@@ -4,11 +4,11 @@
             <% if @team.owner_id == current_customer.id %>
                 <div class="ml-auto">
                     <%= form_with model: @schedule, url: team_schedules_path(@team.id), method: :post, local:true do |f| %>
-                        <%= f.label :タイトル %>
+                        <%= f.label :タイトル %><br>
                         <%= f.text_field :title %><br>
-                        <%= f.label :予定開始 %>
+                        <%= f.label :予定開始 %><br>
                         <%= f.datetime_select :starts_at %><br>
-                        <%= f.label :予定終了 %>
+                        <%= f.label :予定終了 %><br>
                         <%= f.datetime_select :ends_at %><br>
                         <%= f.submit "予定登録", class:"btn btn-primary" %>
                     <% end %>
@@ -57,8 +57,8 @@
                             <%= f.text_field :score, placeholder:"例）1-1" %>
                         </div>
                          <div class="mr-2">
-                            <%= f.label :備考 %><br>
-                            <%= f.text_field :note, placeholder:"30文字以内" %>
+                            <%= f.label :内容 %><br>
+                            <%= f.text_area :note, placeholder:"200文字以内" %>
                         </div>
                          <div class="mr-2">
                             <%= f.label :結果 %><br>
@@ -79,27 +79,19 @@
                 <thead>
                     <tr>
                         <th>日程</th>
-                        <th>場所</th>
-                        <th>対戦相手</th>
+                        <th colspan="3">対戦相手</th>
                         <th>スコア</th>
-                        <th>備考</th>
-                        <th>結果</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% @team_records.each do |team_record| %>
+
                         <tr>
-                            <td><%= team_record.day %></td>
-                            <td><%= team_record.place %></td>
-                            <td><%= team_record.opponent %></td>
-                            <td><%= team_record.score %></td>
-                            <td><%= team_record.note %></td>
-                            <td><%= team_record.result %></td>
-                            <% if @team.owner_id == current_customer.id %>
-                                <td><%= link_to "削除", team_team_record_path(@team.id,team_record.id), method: :delete, class:"btn btn-danger" %></td>
-                            <% end %>
+                            <td><%= link_to team_record.day, team_team_record_path(@team.id, team_record.id) %></td>
+                            <td colspan="3"><%= link_to team_record.opponent, team_team_record_path(@team.id, team_record.id) %></td>
+                            <td><%= link_to team_record.score, team_team_record_path(@team.id, team_record.id) %></td>
                         </tr>
+
                     <% end %>
                 </tbody>
             </table>

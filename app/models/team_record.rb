@@ -6,7 +6,7 @@ class TeamRecord < ApplicationRecord
   validates :place, presence: true, length: {maximum: 20}
   validates :opponent, presence: true, length: {maximum: 20}
   validates :score, presence: true, length: {maximum: 10}
-  validates :note, length: {maximum: 30}
+  validates :note, length: {maximum: 200}
   validates :result, presence: true, length: {maximum: 10}
 
 

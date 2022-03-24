@@ -9,6 +9,9 @@ document.addEventListener('turbolinks:load', function() {
     plugins: [ dayGridPlugin, interactionPlugin ],
     locale: 'ja',
     events: 'schedules.json',
+    eventClick: (e)=>{// イベントのクリックイベント
+		alert( e.event.title + '.\n' + e.event.start + '.\n' + e.event.end);
+	}
 
   });
 

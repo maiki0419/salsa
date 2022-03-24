@@ -15,56 +15,48 @@
   <table class="table">
     <tbody>
       <tr>
-        <th>カテゴリー</th>
-        <td><%= @post.post_categroy %></td>
-        <td colspan="3"></td>
+        <th colspan="2">カテゴリー</th>
+        <td colspan="4"><%= @post.post_categroy %></td>
       </tr>
       <tr>
-        <th>代表者</th>
-        <td><%= link_to @post.customer.nickname, customer_path(@post.customer_id) %></td>
-        <td colspan="3"></td>
+        <th colspan="2">代表者</th>
+        <td colspan="4"><%= link_to @post.customer.nickname, customer_path(@post.customer_id) %></td>
       </tr>
       <tr>
         <th>タグ</th>
-        <td colspan="4">
+        <td colspan="5">
           <% @post_tags.each do |post_tag| %>
             <%= link_to post_tag.name + "(#{post_tag.posts.count})", posts_path(sort: "tag", tag: "#{post_tag.name}") %>/
           <% end %>
         </td>
       </tr>
       <tr>
-        <th>チーム名</th>
-          <td><%= link_to @post.team_name(@post.team_id), team_path(@post.team_id) %></td>
-        <td colspan="3"></td>
+        <th colspan="2">チーム名</th>
+          <td colspan="4"><%= link_to @post.team_name(@post.team_id), team_path(@post.team_id) %></td>
       </tr>
       <tr>
-        <th>開催日</th>
-        <td><%= @post.start_date %></td>
-        <td colspan="3"></td>
+        <th colspan="2">開催日</th>
+        <td colspan="4"><%= @post.start_date %></td>
       </tr>
       <tr>
-        <th>募集期限</th>
-        <td><%= @post.deadline %></td>
-        <td colspan="3"></td>
+        <th colspan="2">募集期限</th>
+        <td colspan="4"><%= @post.deadline %></td>
       </tr>
       <tr>
-        <th>活動エリア</th>
-        <td colspan="2"><%= @post.prefecture_id %><<%= @post.city %></td>
-        <td colspan="2"></td>
+        <th colspan="2">活動エリア</th>
+        <td colspan="4"><%= @post.prefecture_id %><<%= @post.city %></td>
       </tr>
       <tr>
-        <th>定員</th>
-        <td><%= @post.capacity %></td>
-        <td colspan="3"></td>
+        <th colspan="2">定員</th>
+        <td colspan="4"><%= @post.capacity %></td>
       </tr>
       <tr>
         <th>会場</th>
-        <td><%= @post.place %></td>
-        <td colspan="3"></td>
+        <td colspan="5"><%= @post.place %></td>
       </tr>
       <tr>
         <th>内容</th>
-        <td colspan="4"><%= simple_format(@post.body) %></td>
+        <td colspan="5"><%= simple_format(@post.body) %></td>
       </tr>
     </tbody>
   </table>

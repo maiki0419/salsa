@@ -1,0 +1,44 @@
+<div class="container">
+  <h2 class="text-center">成績詳細</h2>
+  <div class="text-right">
+
+
+    <% if @team.owner_id == current_customer.id %>
+      <%= link_to "削除", team_team_record_path(@team.id, @team_record.id), method: :delete, class:"btn btn-danger" %>
+    <% end %>
+
+  </div>
+
+  <div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th colspan="2">日程</th>
+          <td colspan="4"><%= @team_record.day %></td>
+        </tr>
+        <tr>
+          <th colspan="2">場所</th>
+          <td colspan="4"><%= @team_record.place %></td>
+        </tr>
+        <tr>
+          <th colspan="2">対戦相手</th>
+          <td colspan="4"><%= @team_record.opponent %></td>
+        </tr>
+        <tr>
+          <th colspan="2">スコア</th>
+          <td colspan="4"><%= @team_record.score %></td>
+        </tr>
+        <tr>
+          <th colspan="2">結果</th>
+          <td colspan="4"<%= @team_record.result %>></td>
+        </tr>
+        <tr>
+          <th>内容</th>
+          <td colspan="5"><%= simple_format(@team_record.note) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

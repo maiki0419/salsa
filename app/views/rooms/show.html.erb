@@ -14,9 +14,9 @@
     </div>
     <div class="col-md-8">
       <% if @customer == current_customer %>
-        <h3>メモ用チャット</h3>
+        <h3 class="mt-5">メモ用チャット</h3>
       <% else %>
-        <h3><%= @customer.nickname %>さんとのチャット</h3>
+        <h3 class="mt-5"><%= @customer.nickname %>さんとのチャット</h3>
       <% end %>
 
       <div class="text-right mb-5">
