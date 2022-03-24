@@ -9,7 +9,7 @@ class Team < ApplicationRecord
   validates :age, length: {maximum: 10}
   validates :member_count, length: {maximum: 10}
   validates :introduction, length: {maximum: 1000}
-  validates :activities_time, length: {maximum: 10}
+  validates :activities_time, length: {maximum: 30}
   validates :founded, length: {maximum: 10}
   has_one_attached :team_image
 
