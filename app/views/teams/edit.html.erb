@@ -8,7 +8,7 @@
 
     <%= form_with model: @team, url: team_path, method: :patch, local:true do |f| %>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
 
           <%= f.hidden_field :owner_id, value:"#{current_customer.id}" %>
 
@@ -29,7 +29,7 @@
 
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-6">
 
           <%= f.label :"レベル", class:"mt-3" %>
        　  <%= f.text_field :level, class:"form-control" %>

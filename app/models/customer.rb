@@ -18,7 +18,8 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
+  
+# 通知機能アソシエーション
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
@@ -53,9 +54,7 @@ class Customer < ApplicationRecord
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_customer.id, id, 'follow' ])
     if temp.blank?
       notification = current_customer.active_notifications.new(visited_id: id, action: 'follow')
-
       notification.save if notification.valid?
-
     end
   end
 
