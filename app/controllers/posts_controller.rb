@@ -12,6 +12,8 @@ before_action :correct_customer, only: [:edit, :update]
   def create
     @post = current_customer.posts.new(post_params)
     tag_list = params[:post][:name].split(',')
+    tag_list << params[:post][:prefecture_id]
+    tag_list << params[:post][:city]
     if @post.save
       @post.save_tag(tag_list)
       flash[:notice] = "投稿に成功しました。"
