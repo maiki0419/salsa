@@ -23,8 +23,8 @@
         <td colspan="4"><%= link_to @post.customer.nickname, customer_path(@post.customer_id) %></td>
       </tr>
       <tr>
-        <th>タグ</th>
-        <td colspan="5">
+        <th colspan="2">タグ</th>
+        <td colspan="4">
           <% @post_tags.each do |post_tag| %>
             <%= link_to post_tag.name + "(#{post_tag.posts.count})", posts_path(sort: "tag", tag: "#{post_tag.name}") %>/
           <% end %>
@@ -51,12 +51,12 @@
         <td colspan="4"><%= @post.capacity %></td>
       </tr>
       <tr>
-        <th>会場</th>
-        <td colspan="5"><%= @post.place %></td>
+        <th colspan="2">会場</th>
+        <td colspan="4"><%= @post.place %></td>
       </tr>
       <tr>
-        <th>内容</th>
-        <td colspan="5"><%= simple_format(@post.body) %></td>
+        <th colspan="2">内容</th>
+        <td colspan="4"><%= simple_format(@post.body) %></td>
       </tr>
     </tbody>
   </table>

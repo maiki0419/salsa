@@ -16,12 +16,12 @@
             <p class="card-text">
               <div class="d-flex">
                 <div class="mr-5">
-                  代表者　　：<%= Customer.find(team.owner_id).nickname %><br>
-                  エリア　　：<%= team.prefecture_id %><<%= team.city %><br>
+                  代表者：<%= Customer.find(team.owner_id).nickname %><br>
+                  エリア：<%= team.prefecture_id %><<%= team.city %><br>
                   メンバー数：<%= team.member_count %>
                 </div>
 
-                <div>
+                <div class="d-none d-sm-block">
                   <%= image_tag team.get_team_image("100x100"), class:"ml-md-5" %>
                 </div>
               </div>
