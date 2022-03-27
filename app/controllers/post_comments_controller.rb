@@ -12,8 +12,6 @@ before_action :authenticate_customer!
       @post.create_notification_comment!(current_customer, @post_comment.id)
 
     else
-      flash[:alert] = "コメントの送信に失敗しました。"
-
     end
   end
 
