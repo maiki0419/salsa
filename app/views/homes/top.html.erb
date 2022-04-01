@@ -1,33 +1,29 @@
-<div class="container">
-  <div class="row mt-3">
-    <p class="text-center mx-auto">
-      ようこそ、Salsaへ！<br>
-      このサイトは、サッカーチームの運営や自分に合ったチームを探すことを目的としたサイトです。<br>
-      会員でもない方も募集一覧、チーム一覧の閲覧はできますが、<br>
-      その他の閲覧には会員登録が必要になります。
-    </p>
-  </div>
-
-  <div class="row">
-    <div class="col-5 mx-auto">
-      <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-primary mt-4 form-control" %><br>
-      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-success mt-3 form-control" %>
+<div class="top-image">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="text-center mx-auto">
+        <strong>ようこそ、Salsaへ！</strong><br><br>
+        このサイトは、サッカーチームの運営や自分に合ったチームを探すことを目的としたサイトです。<br>
+        会員でもない方も募集一覧、チーム一覧の閲覧はできますが、<br>
+        その他の閲覧には会員登録が必要になります。
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-5 mx-auto">
+        <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-primary mt-4 form-control" %><br>
+        <%= link_to "ログイン", new_customer_session_path, class: "btn btn-success mt-3 form-control" %>
+      </div>
     </div>
   </div>
-
-<div class="text-center">
-  <i class="fa-solid fa-futbol ml-3 mt-5"></i>
-  <i class="fa-solid fa-futbol ml-3 mt-5"></i>
-  <i class="fa-solid fa-futbol ml-3 mt-5"></i>
-  <i class="fa-solid fa-futbol ml-3 mt-5"></i>
 </div>
 
 
-  <h2 class="text-center mt-5">タグ一覧</h2>
-  <div class="col-10 mx-auto mt-3">
+
+<div class="container">
+  <h2 class="caption mx-auto text-center mt-5">タグ一覧</h2>
+  <div class="col-10 mx-auto mt-5">
     <% @tags.each do |tag| %>
       <%= link_to tag.name + "(#{tag.posts.count})", posts_path(sort: "tag", tag: "#{tag.name}") %>/
     <% end %>
   </div>
-
 </div>

@@ -16,13 +16,41 @@
 
 
  /*全体*/
+
+
 table{
   table-layout: fixed;
 }
 
+p{
+  font-size: 20px;
+}
+
+.caption {
+  width: 500px;
+  padding: 10px 20px;
+  color: #fff;
+  background: #17a2b8;
+  -webkit-box-shadow: 5px 5px 0 #007032;
+  box-shadow: 5px 5px 0 #007032;
+}
+
+
+
+
+
+
 /*topページ*/
 .fa-futbol{
   font-size:60px;
+}
+
+.top-image{
+  height: 600px;
+  background-image: image-url("soccer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 
@@ -39,11 +67,14 @@ table{
 /*チーム一覧ページ*/
 .teams-img{
   width: 100%;
-  height: 200px;
-  background-image: image-url("soccerg.jpg");
+  height: 300px;
+  background-image: image-url("soccer.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+}
+
+.fa-hand-point-down{
+  font-size:50px;
 }
 
 /*お気に入りicon*/

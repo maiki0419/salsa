@@ -1,16 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="teams-img text-center pt-3">
-      <%= link_to "チーム登録", new_team_path, class:"btn btn-lg btn-primary mt-5" %>
-    </div>
+
+
+  <div class="teams-img text-center pt-5">
+
+    <p class="d-inlineblock">
+     チームの運営者の方こちらから<br>
+     チーム登録の行なってください
+    </p>
+
+    <i class="fa-solid fa-hand-point-down"></i><br>
+
+    <%= link_to "チーム登録する", new_team_path, class:"btn btn-lg btn-primary mt-3" %>
+
   </div>
 
-  <h2 class="text-center mt-5">チーム一覧</h2>
+
+  <h2 class="caption mx-auto text-center mt-5">チーム一覧</h2>
 
   <div class="col-md-6 mx-auto">
     <% @teams.each do |team| %>
       <%= link_to team_path(team.id) do %>
-        <div class="card mt-3">
+        <div class="card mt-5">
           <h5 class="card-header"><%= team.name %></h5>
           <div class="card-body text-left">
             <p class="card-text">
