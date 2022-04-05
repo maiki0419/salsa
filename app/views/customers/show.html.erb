@@ -1,56 +1,62 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="d-flex">
-       <div>
-          <%= image_tag @customer.get_profile_image("150x150") %>
-        </div>
-        <div class="ml-5 mt-2">
-          <% if @customer != current_customer %>
-            <%= link_to "チャット", room_path(@customer.id), class:"btn btn-sm btn-primary mt-5" %><br>
-          <% else %>
-            <%= link_to "チャット", room_path(current_customer.id), class:"btn btn-sm btn-primary mt-5" %><br>
-          <% end %>
+  <h2 class="caption mx-auto text-center mt-5">マイページ</h2>
+  <div class="row mt-5">
+    <div class="col-md-5 mt-4">
+      <div class="customer-section-bg">
+        <div class="customer-profile-bg mt-2">
+          <div class="d-flex">
+           <div>
+              <%= image_tag @customer.get_profile_image("150x150") %>
+            </div>
+            <div class="ml-5 mt-2">
+              <% if @customer != current_customer %>
+                <%= link_to "チャット", room_path(@customer.id), class:"btn btn-sm btn-primary mt-5" %><br>
+              <% else %>
+                <%= link_to "チャット", room_path(current_customer.id), class:"btn btn-sm btn-primary mt-5" %><br>
+              <% end %>
 
-          <div id="follow_<%= @customer.id %>">
-            <%= render "relationships/follow", customer: @customer %>
+              <div id="follow_<%= @customer.id %>">
+                <%= render "relationships/follow", customer: @customer %>
+              </div>
+            </div>
           </div>
+          <div class="ml-3">
+            <%= link_to "フォロー", followers_customer_path(@customer.id) %><%= @customer.followers.count %>
+            <%= link_to "フォロワー", followeds_customer_path(@customer.id),class:"ml-3" %><%= @customer.followeds.count %>
+          </div>
+          <p class="mt-3">
+            <%= @customer.nickname %>さんのプロフィール
+            <% if @customer == current_customer %>
+               <%= link_to "編集", edit_customer_path(@customer.id), class:"btn btn-sm btn-success ml-3" %>
+            <% end %>
+          </p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>活動エリア</th>
+                <td colspan="2"><%= @customer.prefecture_id %><<%= @customer.city %></td>
+              </tr>
+              <tr>
+                <th>性別</th>
+                <td colspan="2"><%= @customer.gender_id %></td>
+              </tr>
+              <tr>
+                <th>年齢</th>
+                <td colspan="2"><%= @customer.age %></td>
+              </tr>
+               <tr>
+                <th>自己紹介</th>
+                <td colspan="2"><%= simple_format(@customer.introduction) %></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="ml-3">
-        <%= link_to "フォロー", followers_customer_path(@customer.id) %><%= @customer.followers.count %>
-        <%= link_to "フォロワー", followeds_customer_path(@customer.id),class:"ml-3" %><%= @customer.followeds.count %>
-      </div>
-      <p class="mt-3">
-        <%= @customer.nickname %>さんのプロフィール
-        <% if @customer == current_customer %>
-           <%= link_to "編集", edit_customer_path(@customer.id), class:"btn btn-sm btn-success ml-3" %>
-        <% end %>
-      </p>
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>活動エリア</th>
-            <td colspan="2"><%= @customer.prefecture_id %><<%= @customer.city %></td>
-          </tr>
-          <tr>
-            <th>性別</th>
-            <td colspan="2"><%= @customer.gender_id %></td>
-          </tr>
-          <tr>
-            <th>年齢</th>
-            <td colspan="2"><%= @customer.age %></td>
-          </tr>
-           <tr>
-            <th>自己紹介</th>
-            <td colspan="2"><%= simple_format(@customer.introduction) %></td>
-          </tr>
-        </tbody>
-      </table>
+
     </div>
     <div class="col-md-7  mx-auto">
       <% if @team_customers.present? %>
-       <div class="text-center">
+       <div class="text-center customer-section-bg mt-4">
           <h3>マイチーム</h3>
           <ul class="list-group">
             <% @team_customers.each do |team_customer| %>
@@ -60,7 +66,7 @@
         </div>
       <% end %>
 
-      <div class="text-center mt-5">
+      <div class="text-center mt-4 customer-section-bg">
         <h2>お気に入り投稿</h2>
          <%= paginate @posts %>
         <%= render "posts/index", posts: @posts %>
