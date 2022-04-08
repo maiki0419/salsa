@@ -14,31 +14,34 @@
   </div>
 
 
-  <h2 class="caption mx-auto text-center mt-5">チーム一覧</h2>
+  <h2 class="teams-caption mx-auto text-center mt-5 mb-5">チーム詳細</h2>
 
   <div class="col-md-6 mx-auto">
-    <% @teams.each do |team| %>
-      <%= link_to team_path(team.id) do %>
-        <div class="card mt-5">
-          <h5 class="card-header"><%= team.name %></h5>
-          <div class="card-body text-left">
-            <p class="card-text">
-              <div class="d-flex">
-                <div class="mr-5">
-                  代表者：<%= Customer.find(team.owner_id).nickname %><br>
-                  エリア：<%= team.prefecture_id %><<%= team.city %><br>
-                  メンバー数：<%= team.member_count %>
-                </div>
+    <div class="teams-section-bg">
+      <% @teams.each do |team| %>
+        <%= link_to team_path(team.id) do %>
+          <div class="card mb-4">
+            <h5 class="card-header pl-5"><%= team.name %></h5>
+            <div class="card-body text-left">
+              <p class="card-text">
+                <div class="d-flex">
+                  <div class="ml-5 mr-5">
+                    代表者：<%= Customer.find(team.owner_id).nickname %><br>
+                    エリア：<%= team.prefecture_id %><<%= team.city %><br>
+                    メンバー数：<%= team.member_count %>
+                  </div>
 
-                <div class="d-none d-sm-block">
-                  <%= image_tag team.get_team_image("100x100"), class:"ml-md-5" %>
+                  <div class="d-none d-sm-block">
+                    <%= image_tag team.get_team_image("100x100"), class:"ml-md-5" %>
+                  </div>
                 </div>
-              </div>
-            </p>
+              </p>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-     <%= paginate @teams %>
+      <%= paginate @teams %>
+    </div>
+
   </div>
 </div>

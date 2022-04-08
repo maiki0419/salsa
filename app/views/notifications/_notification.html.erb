@@ -1,6 +1,5 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
-  <div class="col-md-6 mx-auto">
     <div class="form-inline border-bottom mb-3">
       <%= link_to "#{visitor.nickname}", customer_path(visitor.id) %>
       <%= "さんが" %>
@@ -30,4 +29,3 @@
       </dvi>
 
     </div>
-  </div>
