@@ -1,39 +1,44 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <ul class="list-group">
-        <% @chat_customers.each do |chat_customer| %>
-          <li class="list-group-item">
-            <%= link_to room_path(chat_customer.id) do %>
-              <%= image_tag chat_customer.get_profile_image("50x50") %>
-              <%= chat_customer.nickname %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+  <div class="row mt-5">
+    <div class="col-md-4 mb-2">
+      <div class="chats-section-bg">
+        <ul class="list-group">
+          <% @chat_customers.each do |chat_customer| %>
+            <li class="list-group-item">
+              <%= link_to room_path(chat_customer.id) do %>
+                <%= image_tag chat_customer.get_profile_image("50x50") %>
+                <%= chat_customer.nickname %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div class="col-md-8">
-      <% if @customer == current_customer %>
-        <h3 class="mt-5">メモ用チャット</h3>
-      <% else %>
-        <h3 class="mt-5"><%= @customer.nickname %>さんとのチャット</h3>
-      <% end %>
-
-      <div class="text-right mb-5">
-        <%= link_to "チャットを退出", room_path(@room.id), method: :delete, class:"btn btn-danger" %>
-      </div>
-      <div id="chats">
-        <%= render "chats/index", chats: @chats %>
-      </div>
-      <div class="mt-5">
-        <%= form_with model: @chat, url: chats_path, method: :post, local: false do |f| %>
-          <%= f.text_area :message, class:"form-control", id:"chat_text", placeholder:"チャット入力" %>
-          <%= f.hidden_field :room_id, value:"#{@room.id}" %>
-          <div class="text-right">
-             <%= f.submit "チャット送信", class:"btn btn-primary mt-3" %>
-          </div>
+      <div class="chat-section-bg">
+        <% if @customer == current_customer %>
+          <h3 class="mt-5">メモ用チャット</h3>
+        <% else %>
+          <h3 class="mt-5"><%= @customer.nickname %>さんとのチャット</h3>
         <% end %>
+
+        <div class="text-right mb-5">
+          <%= link_to "チャットを退出", room_path(@room.id), method: :delete, class:"btn btn-danger" %>
+        </div>
+        <div id="chats">
+          <%= render "chats/index", chats: @chats %>
+        </div>
+        <div class="mt-5">
+          <%= form_with model: @chat, url: chats_path, method: :post, local: false do |f| %>
+            <%= f.text_area :message, class:"form-control", id:"chat_text", placeholder:"チャット入力" %>
+            <%= f.hidden_field :room_id, value:"#{@room.id}" %>
+            <div class="text-right">
+               <%= f.submit "チャット送信", class:"btn btn-primary mt-3" %>
+            </div>
+          <% end %>
+        </div>
       </div>
+
     </div>
   </div>
 </div>

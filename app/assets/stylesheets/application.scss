@@ -99,6 +99,29 @@ p{
   background-color:white;
 }
 
+/*通知一覧*/
+
+.notifications-section-bg{
+  border:10px solid #9ad3cf;
+  padding:5px;
+  border-radius:10px;
+}
+
+
+/*チャットルーム*/
+
+.chats-section-bg{
+  background-color: #9ad3cf;
+  padding:10px;
+  border-radius:10px;
+}
+
+.chat-section-bg{
+  border:10px solid #9ad3cf;
+  padding:5px;
+  border-radius:10px;
+}
+
 
 /*チーム詳細*/
 .team-caption{
@@ -117,12 +140,42 @@ p{
 }
 
 .team-profile-bg{
-   background-color:white;
+  background-color:white;
+}
+
+/*チーム一覧*/
+
+.teams-caption{
+  width: 500px;
+  padding: 10px 20px;
+  color: #fff;
+  background: #994d3d;
+  -webkit-box-shadow: 5px 5px 0 #663329;
+  box-shadow: 5px 5px 0 #663329;
+}
+
+.teams-section-bg{
+  background-color: #f0cdbd;
+  padding:30px 30px 5px 30px;
+  border-radius:10px;
 }
 
 
+/*投稿一覧*/
 
+.posts-caption{
+  width: 500px;
+  padding: 10px 20px;
+  color: #fff;
+  background: #008000;
+  -webkit-box-shadow: 5px 5px 0 #004d00;
+  box-shadow: 5px 5px 0 #004d00;
+}
 
-
+.posts-section-bg{
+  background-color: #8fcc8f;
+  padding:30px 30px 5px 30px;
+  border-radius:10px;
+}
 
 

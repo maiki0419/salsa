@@ -9,7 +9,7 @@
 </div>
 
 <div class="container">
-  <h2 class="caption mx-auto text-center mt-5">投稿一覧</h2>
+  <h2 class="posts-caption mx-auto text-center mt-5 mb-5">投稿一覧</h2>
 
   <div class="col-md-8 mx-auto mt-5">
     <%= link_to "お気に入り順", posts_path(sort: "favorite") %>/
@@ -17,7 +17,10 @@
        <%= link_to "フォロー中", posts_path(sort: "follow") %>/
     <% end %>
     <%= link_to "タグ一覧", root_path %>
-    <%= render "posts/index", posts: @posts %>
-    <%= paginate @posts %>
+    <div class="posts-section-bg">
+      <%= render "posts/index", posts: @posts %>
+      <%= paginate @posts %>
+    </div>
+
   </div>
 </div>
