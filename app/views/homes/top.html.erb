@@ -21,7 +21,11 @@
 
 <div class="container">
   <h2 class="caption mx-auto text-center mt-5">タグ一覧</h2>
-  <div class="col-10 mx-auto mt-5">
+  <div class="text-center mt-5">
+    <%= render "posts/tag_searches" %>
+  </div>
+
+  <div class="col-10 mx-auto mt-3">
     <% @tags.each do |tag| %>
       <%= link_to tag.name + "(#{tag.posts.count})", posts_path(sort: "tag", tag: "#{tag.name}") %>/
     <% end %>
