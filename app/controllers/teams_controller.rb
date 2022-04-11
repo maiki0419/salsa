@@ -24,6 +24,11 @@ before_action :correct_customer, only: [:edit, :update]
 
 
   def show
+    if params[:ground].blank? || params[:member].blank?
+      @ground_price = ""
+    else
+      @ground_price = params[:ground].to_i / params[:member].to_i
+    end
     @team = Team.find(params[:id])
     @posts = Post.where(team_id: @team.id).order(created_at: "DESC").page(params[:page]).per(10)
   end
