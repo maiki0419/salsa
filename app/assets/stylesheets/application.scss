@@ -27,7 +27,7 @@ p{
 }
 
 .caption {
-  width: 500px;
+  width: 350px;
   padding: 10px 20px;
   color: #fff;
   background: #17a2b8;
@@ -46,11 +46,16 @@ p{
 }
 
 .top-image{
-  height: 400px;
+  height: 600px;
   background-image: image-url("soccer.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
 
+.top-text{
+  background-color:#00bfff;
+  border-radius:10px;
+  padding:20px;
 }
 
 
@@ -125,7 +130,7 @@ p{
 
 /*チーム詳細*/
 .team-caption{
-  width: 500px;
+  width: 350px;
   padding: 10px 20px;
   color: #fff;
   background: #994d3d;
@@ -143,10 +148,15 @@ p{
   background-color:white;
 }
 
+.ground-price-section{
+  border: 10px solid #f0cdbd;
+  border-radius:10px;
+}
+
 /*チーム一覧*/
 
 .teams-caption{
-  width: 500px;
+  width: 350px;
   padding: 10px 20px;
   color: #fff;
   background: #994d3d;
@@ -164,7 +174,7 @@ p{
 /*投稿一覧*/
 
 .posts-caption{
-  width: 500px;
+  width: 350px;
   padding: 10px 20px;
   color: #fff;
   background: #008000;
