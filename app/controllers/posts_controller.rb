@@ -14,6 +14,7 @@ before_action :correct_customer, only: [:edit, :update]
     tag_list = params[:post][:name].split(',')
     tag_list << params[:post][:prefecture_id]
     tag_list << params[:post][:city]
+    tag_list << params[:post][:post_categroy]
     if @post.save
       @post.save_tag(tag_list)
       flash[:notice] = "投稿に成功しました。"
@@ -57,6 +58,9 @@ before_action :correct_customer, only: [:edit, :update]
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
+    tag_list << params[:post][:prefecture_id]
+    tag_list << params[:post][:city]
+    tag_list << params[:post][:post_categroy]
     if @post.update(post_params)
       @post.save_tag(tag_list)
       flash[:notice] = "更新に成功しました。"

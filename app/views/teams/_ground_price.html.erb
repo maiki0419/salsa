@@ -1,0 +1,10 @@
+<div class="ground-price-section mt-2">
+  <p>グラウンド費計算</p>
+  <%= form_with url:team_path(@team), method: :get, local: false do |f| %>
+    <%= f.label :グラウンド費用 %> ÷ <%= f.label :人数 %><br>
+    <%= f.text_field :ground %>÷<%= f.text_field :member %>
+    <%= f.submit "＝", class:"btn btn-primary" %>
+    <%= f.label :費用（平均） %><br>
+    <%= f.text_field :ground_price, value:"#{ground_price}" %>
+  <% end %>
+</div>

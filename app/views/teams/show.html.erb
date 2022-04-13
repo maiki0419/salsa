@@ -55,8 +55,15 @@
         </div>
       </div>
 
+      <div id="ground_price">
+        <%= render "teams/ground_price", ground_price: @ground_price %>
+      </div>
+
 
     </div>
+
+
+
     <div class="col-md-7">
       <div class="text-center">
         <%= link_to "　　投稿　　", new_post_path, class:"btn btn-lg btn-primary" %>
