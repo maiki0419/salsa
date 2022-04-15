@@ -18,10 +18,15 @@
     <% end %>
     <%= link_to "タグ一覧", root_path %>
     <%= render "posts/tag_searches" %>
-    <div class="posts-section-bg">
-      <%= render "posts/index", posts: @posts %>
-      <%= paginate @posts %>
-    </div>
-
+    <% if @tag.nil? %>
+      <div class="posts-section-bg text-center">
+         <%= @posts %>
+      </div>
+    <% else %>
+      <div class="posts-section-bg">
+        <%= render "posts/index", posts: @posts %>
+        <%= paginate @posts %>
+      </div>
+    <% end %>
   </div>
 </div>
