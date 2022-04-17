@@ -36,7 +36,8 @@ before_action :correct_customer, only: [:edit, :update]
     elsif params[:sort] == "tag"
       @tag = Tag.find_by(name: "#{params[:tag]}")
       if @tag.nil?
-        @posts = "投稿がありません"
+        flash[:alert] = "検索したタグの投稿がありません"
+        @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(10)
       else
         @posts = @tag.posts.page(params[:page]).per(10)
       end
