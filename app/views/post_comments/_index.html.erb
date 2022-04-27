@@ -8,6 +8,7 @@
               <div class="mb-2">
                 <%= link_to post_comment.customer.nickname, customer_path(post_comment.customer.id) %><br>
               </div>
+              <%= post_comment.created_at.to_s(:datetime_jp) %><br>
               <%= post_comment.comment %>
               <% if post_comment.customer_id == current_customer.id %>
                 <%= link_to "削除", post_post_comment_path(post.id, post_comment.id), method: :delete, remote: true, class:"btn btn-sm btn-danger ml-3" %>

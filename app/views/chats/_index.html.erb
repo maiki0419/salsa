@@ -2,6 +2,7 @@
   <% if chat.customer == current_customer %>
     <div class="text-right mb-4 ">
       <div class="mb-2 border-bottom d-inline">
+        <%= chat.created_at.to_s(:datetime_jp) %><br>
         <%= chat.customer.nickname %><br>
       </div>
       <%= link_to "削除", chat_path(chat.id), method: :delete, remote: true, class:"btn btn-sm btn-danger mr-3" %><%= chat.message %>
@@ -9,6 +10,7 @@
   <% else %>
     <div class="text-left mb-4 ">
       <div class="mb-2 border-bottom d-inline">
+        <%= chat.created_at.to_s(:datetime_jp) %><br>
         <%= chat.customer.nickname %><br>
       </div>
       <%= chat.message %>
