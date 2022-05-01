@@ -5,6 +5,22 @@ class TeamRecordsController < ApplicationController
     @team_record = TeamRecord.find(params[:id])
   end
 
+  def edit
+    @team = Team.find(params[:team_id])
+    @team_record = TeamRecord.find(params[:id])
+  end
+
+  def update
+    @team_record = TeamRecord.find(params[:id])
+    if @team_record.update(team_record_params)
+     flash[:notice] = "成績更新に成功しました。"
+     redirect_to team_team_record_path(@team_record.team_id, @team_record.id)
+   else
+     flash[:alert] = "成績の更新に失敗しました。"
+     render :edit
+   end
+  end
+
 
   def create
     @team = Team.find(params[:team_id])
