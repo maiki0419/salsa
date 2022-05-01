@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :teams do
     resources :schedules, only: [:index, :create, :destroy]
-    resources :team_records, only: [:create, :destroy, :show]
+    resources :team_records, only: [:create, :destroy, :show, :edit, :update]
   end
 
 

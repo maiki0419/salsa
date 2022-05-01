@@ -4,6 +4,7 @@
 
     <%= link_to "戻る", team_schedules_path(@team.id), class:"btn btn-primary" %>
     <% if @team.owner_id == current_customer.id %>
+      <%= link_to "更新", edit_team_team_record_path(@team.id, @team_record.id), class:"btn btn-success" %>
       <%= link_to "削除", team_team_record_path(@team.id, @team_record.id), method: :delete, class:"btn btn-danger" %>
     <% end %>
 
