@@ -44,10 +44,10 @@ before_action :correct_customer, only: [:edit, :update]
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash[:notice] = "更新に成功しました。"
+      flash[:notice] = "更新に成功しました"
       redirect_to team_path(@team.id)
     else
-      flash[:alert] = "更新に失敗しました。"
+      flash[:alert] = "更新に失敗しました"
       render :edit
     end
   end
